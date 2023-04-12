@@ -10,7 +10,7 @@ load_dotenv('../.env')
 
 # TODO: do document clean up to reduce noise
 class DocumentReader(object):
-    def __init__(self, engine: str = 'UnstructuredPDFLoader', chunk_size: int = 1000, debug: bool = False) -> None:
+    def __init__(self, engine: str = 'PyPDFParser', chunk_size: int = 1000, debug: bool = False) -> None:
         assert engine in ['UnstructuredPDFLoader', 'PyPDFParser']
         self.engine = engine
         self.debug = debug
