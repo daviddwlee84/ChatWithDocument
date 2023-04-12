@@ -1,7 +1,17 @@
-langchain
+# PDF (for LangChain)
+pytesseract
+# python-poppler
+git+https://github.com/facebookresearch/detectron2.git
+unstructured[local-inference]
+py-pdf-parser[dev]
+# LangChain
 tiktoken
+langchain
+# OpenAI
 openai
+# Utilities
 python-dotenv
 tqdm
 ipdb
+# ANN
 annoy
