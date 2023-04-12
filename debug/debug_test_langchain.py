@@ -2,7 +2,7 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from dotenv import load_dotenv
 import os
 
-load_dotenv('.env')
+load_dotenv('../.env')
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
 # https://python.langchain.com/en/latest/reference/modules/embeddings.html?highlight=OpenAIEmbeddings#langchain.embeddings.OpenAIEmbeddings

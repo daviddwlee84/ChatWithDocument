@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 import os
 import openai
 
-load_dotenv('.env')
+load_dotenv('../.env')
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
 # https://platform.openai.com/docs/api-reference/requesting-organization
