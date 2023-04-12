@@ -7,6 +7,12 @@ Apply LLM and ANN (Embedding Recall) to chat with document or do summarization.
 * LangChain: Drive LLMs
 * annoy: relevance embedding recall (alternative of Pinecone)
 
+## Getting Started
+
+1. `pip install -r requirements.txt`
+2. Solve dependency issues of the PDF parser (see [Trouble Shooting](#trouble-shooting))
+3. `cd chat_with_doc` then `python llm_chain.py` (temporarily, will have interactive CLI or WebUI)
+
 ## Resources
 
 * Tutorial
