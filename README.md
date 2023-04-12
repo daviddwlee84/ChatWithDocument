@@ -26,3 +26,21 @@ Apply LLM and ANN (Embedding Recall) to chat with document or do summarization.
     * [Overview — PDF Parser documentation](https://py-pdf-parser.readthedocs.io/en/latest/overview.html)
 * .env
   * [theskumar/python-dotenv: Reads key-value pairs from a .env file and can set them as environment variables. It helps in developing applications following the 12-factor principles.](https://github.com/theskumar/python-dotenv)
+
+## Trouble Shooting
+
+### Install annoy
+
+```txt
+building 'annoy.annoylib' extension
+      error: Microsoft Visual C++ 14.0 or greater is required. Get it with "Microsoft C++ Build Tools": https://visualstudio.microsoft.com/visual-cpp-build-tools/
+```
+
+* [Microsoft C++ Build Tools - Visual Studio](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
+
+```txt
+Installing collected packages: annoy
+  DEPRECATION: annoy is being installed using the legacy 'setup.py install' method, because it does not have a 'pyproject.toml' and the 'wheel' package is not installed. pip 23.1 will enforce this behaviour change. A possible replacement is to enable the '--use-pep517' option. Discussion can be found at https://github.com/pypa/pip/issues/8559
+```
+
+`pip install annoy --use-pep517 --force`
