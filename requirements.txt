@@ -1,3 +1,5 @@
+langchain
+tiktoken
 openai
 python-dotenv
 tqdm

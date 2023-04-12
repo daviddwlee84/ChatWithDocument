@@ -11,6 +11,7 @@ Apply LLM and ANN (Embedding Recall) to chat with document or do summarization.
 
 * Tutorial
   * [LangChain101: Question A 300 Page Book (w/ OpenAI + Pinecone) - YouTube](https://www.youtube.com/watch?v=h0DHDp1FbmQ)
+    * [langchain-tutorials/Ask A Book Questions.ipynb at main · gkamradt/langchain-tutorials · GitHub](https://github.com/gkamradt/langchain-tutorials/blob/main/data_generation/Ask%20A%20Book%20Questions.ipynb)
   * [GPT-4 & LangChain Tutorial: How to Chat With A 56-Page PDF Document (w/Pinecone) - YouTube](https://www.youtube.com/watch?v=ih9PBGVVOO4)
     * [mayooear/gpt4-pdf-chatbot-langchain: GPT4 & LangChain Chatbot for large PDF docs](https://github.com/mayooear/gpt4-pdf-chatbot-langchain)
 * OpenAI
@@ -26,6 +27,8 @@ Apply LLM and ANN (Embedding Recall) to chat with document or do summarization.
     * [Overview — PDF Parser documentation](https://py-pdf-parser.readthedocs.io/en/latest/overview.html)
 * .env
   * [theskumar/python-dotenv: Reads key-value pairs from a .env file and can set them as environment variables. It helps in developing applications following the 12-factor principles.](https://github.com/theskumar/python-dotenv)
+* Other
+  * [openai/tiktoken: tiktoken is a fast BPE tokeniser for use with OpenAI's models.](https://github.com/openai/tiktoken) (for OpenAIEmbeddings)
 
 ## Trouble Shooting
 
