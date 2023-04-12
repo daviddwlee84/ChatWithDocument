@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 load_dotenv('../.env')
 
 
+# TODO: do document clean up to reduce noise
 class DocumentReader(object):
     def __init__(self, engine: str = 'UnstructuredPDFLoader', chunk_size: int = 1000, debug: bool = False) -> None:
         assert engine in ['UnstructuredPDFLoader', 'PyPDFParser']
@@ -96,7 +97,7 @@ def _debug_UnstructuredPDFLoader(file_path: str) -> None:
 
 def _debug_PyPDFParser(file_path: str) -> None:
     """
-    Can't detect elements...
+    (Can't detect elements from the field-guide-to-data-science.pdf)
     """
     reader = DocumentReader(engine='PyPDFParser', debug=True)
 
