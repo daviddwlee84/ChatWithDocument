@@ -12,13 +12,18 @@ class DocumentEncoder(object):
         self.chunk_size = chunk_size
         self.encoder = Representation(engine=encoder_engine)
 
+    @staticmethod
+    def _get_default_output_file_path(input_file_path: str):
+        return os.path.join(os.path.dirname(
+            input_file_path), os.path.basename(input_file_path) + '.embed.json')
+
     def encode(self, input_file_path: str, output_file_path: str = None, override: bool = False) -> Dict[str, dict]:
         assert input_file_path.endswith(
             '.pdf'), 'Currently, self.doc_reader only support pdf file'
 
         if not output_file_path:
-            output_file_path = os.path.join(os.path.dirname(
-                input_file_path), os.path.basename(input_file_path) + '.embed.json')
+            output_file_path = self._get_default_output_file_path(
+                input_file_path)
 
         if not override and os.path.exists(output_file_path):
             print(
@@ -42,7 +47,8 @@ class DocumentEncoder(object):
 
         return data
 
-    def load(self, file_path: str) -> Dict[str, dict]:
+    @staticmethod
+    def load(file_path: str) -> Dict[str, dict]:
         with open(file_path, 'r', encoding='utf-8') as fp:
             return json.load(fp)
 
