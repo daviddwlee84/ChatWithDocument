@@ -3,9 +3,6 @@ from langchain.document_loaders import UnstructuredPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from py_pdf_parser.loaders import load_file
 from py_pdf_parser.visualise import visualise
-from dotenv import load_dotenv
-
-load_dotenv('../.env')
 
 
 # TODO: do document clean up to reduce noise

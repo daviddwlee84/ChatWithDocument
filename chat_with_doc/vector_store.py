@@ -3,6 +3,7 @@ from annoy import AnnoyIndex
 from document_encoder import DocumentEncoder
 from representation import Representation
 import os
+from langchain.schema import Document
 
 
 class ANNIndexBuilder(object):
@@ -92,6 +93,7 @@ class AnnRecall(object):
     def recall_topk_document(self, query: str, topk: int = 10) -> List[Tuple[Dict[str, str], float]]:
         """
         TODO: maybe add ANN threshold & minimum recall number
+
         """
         match_result = self._retrieve_topk_ids(query, topk)
         doc_result = []
@@ -99,6 +101,16 @@ class AnnRecall(object):
             original_doc = self.data[str(doc_id)]['Document']
             doc_result.append((original_doc, score))
         return doc_result
+
+    def similarity_search(self, query: str, k: int = 4) -> List[Document]:
+        """
+        Simulate https://python.langchain.com/en/latest/reference/modules/vectorstore.html?highlight=similarity_search#langchain.vectorstores.Pinecone.similarity_search
+        """
+        doc_result = self.recall_topk_document(query, k)
+        docs = []
+        for doc, _ in doc_result:
+            docs.append(Document(page_content=doc))
+        return docs
 
 
 if __name__ == "__main__":
@@ -118,7 +130,7 @@ if __name__ == "__main__":
     # NOTE: this will call embedding API
     results = ann_recall.recall_topk_document('LLM大模型')
     print(results)
-    results2 = ann_recall.recall_topk_document('华为的毛利率与净利率')
+    results2 = ann_recall.similarity_search('华为的毛利率与净利率')
     print(results2)
     import ipdb
     ipdb.set_trace()
