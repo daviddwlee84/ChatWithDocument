@@ -13,6 +13,28 @@ Apply LLM and ANN (Embedding Recall) to chat with document or do summarization.
 2. Solve dependency issues of the PDF parser (see [Trouble Shooting](#trouble-shooting))
 3. `cd chat_with_doc` then `python llm_chain.py` (temporarily, will have interactive CLI or WebUI)
 
+## TODO
+
+* Prompt Engineering
+  * [ ] Change Chinese prompt
+  * [ ] Try other prompt (Chat friendly)
+* Replace OpenAI API with open source alternatives
+  * [ ] Embedding
+    * [ ] shibing624/text2vec -> GanymedeNil/text2vec-large-chinese
+  * [ ] LLM
+    * [ ] THUDM/ChatGLM-6B
+    * [ ] Jittor-based LLM
+  * [ ] ANN
+* Approach
+  * [ ] Extract topic from document for relevance search instead of compare the document embedding itself
+  * [ ] Chunk document into smaller pieces e.g. sections / paragraphs / sentences
+* UI/UX
+  * [ ] CLI
+  * [ ] WebUI
+* Application
+  * [ ] Simple QA
+  * [ ] Chat with Document (with Chat History)
+
 ## Resources
 
 * Tutorial
@@ -20,11 +42,28 @@ Apply LLM and ANN (Embedding Recall) to chat with document or do summarization.
     * [langchain-tutorials/Ask A Book Questions.ipynb at main · gkamradt/langchain-tutorials · GitHub](https://github.com/gkamradt/langchain-tutorials/blob/main/data_generation/Ask%20A%20Book%20Questions.ipynb)
   * [GPT-4 & LangChain Tutorial: How to Chat With A 56-Page PDF Document (w/Pinecone) - YouTube](https://www.youtube.com/watch?v=ih9PBGVVOO4)
     * [mayooear/gpt4-pdf-chatbot-langchain: GPT4 & LangChain Chatbot for large PDF docs](https://github.com/mayooear/gpt4-pdf-chatbot-langchain)
+  * [Tutorial: ChatGPT Over Your Data](https://blog.langchain.dev/tutorial-chatgpt-over-your-data/)
+    * [hwchase17/chat-your-data](https://github.com/hwchase17/chat-your-data)
+* Example
+  * [imClumsyPanda/langchain-ChatGLM: langchain-ChatGLM, local knowledge based ChatGLM with langchain ｜ 基于本地知识的 ChatGLM](https://github.com/imClumsyPanda/langchain-ChatGLM)
+  * [GanymedeNil/document.ai: 基于向量数据库与GPT3.5的通用本地知识库方案(A universal local knowledge base solution based on vector database and GPT3.5)](https://github.com/GanymedeNil/document.ai)
+  * [arc53/DocsGPT: GPT-powered chat for documentation search & assistance.](https://github.com/arc53/DocsGPT)
 * OpenAI
   * [OpenAI API](https://openai.com/blog/openai-api)
     * [API Reference - OpenAI API](https://platform.openai.com/docs/api-reference)
 * LLM
   * [hwchase17/langchain: ⚡ Building applications with LLMs through composability ⚡](https://github.com/hwchase17/langchain)
+  * [THUDM/ChatGLM-6B: ChatGLM-6B：开源双语对话语言模型 | An Open Bilingual Dialogue Language Model](https://github.com/THUDM/ChatGLM-6B)
+  * [Jittor/JittorLLMs: 计图大模型推理库，具有高性能、配置要求低、中文支持好、可移植等特点](https://github.com/Jittor/JittorLLMs)
+  * [nomic-ai/gpt4all: gpt4all: an ecosystem of open-source chatbots trained on a massive collections of clean assistant data including code, stories and dialogue](https://github.com/nomic-ai/gpt4all)
+  * [lm-sys/FastChat: The release repo for "Vicuna: An Open Chatbot Impressing GPT-4"](https://github.com/lm-sys/FastChat)
+  * [BlinkDL/ChatRWKV: ChatRWKV is like ChatGPT but powered by RWKV (100% RNN) language model, and open source.](https://github.com/BlinkDL/ChatRWKV)
+  * [abetlen/llama-cpp-python: Python bindings for llama.cpp](https://github.com/abetlen/llama-cpp-python)
+* Embedding
+  * OpenAIEmbedding
+  * [shibing624/text2vec: text2vec, text to vector. 文本向量表征工具，把文本转化为向量矩阵，实现了Word2Vec、RankBM25、Sentence-BERT、CoSENT等文本表征、文本相似度计算模型，开箱即用。](https://github.com/shibing624/text2vec)
+    * [shibing624/text2vec-base-chinese · Hugging Face](https://huggingface.co/shibing624/text2vec-base-chinese)
+    * [GanymedeNil/text2vec-large-chinese at main](https://huggingface.co/GanymedeNil/text2vec-large-chinese/tree/main)
 * ANN / Embedding Recall
   * [spotify/annoy: Approximate Nearest Neighbors in C++/Python optimized for memory usage and loading/saving to disk](https://github.com/spotify/annoy)
   * [SearchEngine/search/annoy at master · daviddwlee84/SearchEngine · GitHub](https://github.com/daviddwlee84/SearchEngine/tree/master/search/annoy)
