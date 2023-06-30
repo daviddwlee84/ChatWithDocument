@@ -6,17 +6,20 @@ Apply LLM and ANN (Embedding Recall) to chat with document or do summarization.
 
 * LangChain: Drive LLMs
 * annoy: relevance embedding recall (alternative of Pinecone)
+* Python version >= 3.8
 
 ## Getting Started
 
 1. `pip install -r requirements.txt`
 2. Solve dependency issues of the PDF parser (see [Trouble Shooting](#trouble-shooting))
-3. `cd chat_with_doc` then `python llm_chain.py` (temporarily, will have interactive CLI or WebUI)
+3. Copy `.env.example` to `.env`, and paste your [OpenAI API key](https://platform.openai.com/account/api-keys)
+4. `cd chat_with_doc` then `python llm_chain.py` (temporarily, will have interactive CLI or WebUI)
 
 ## TODO
 
 * Prompt Engineering
   * [ ] Change Chinese prompt
+    * [X] [Example 1](https://github.com/imClumsyPanda/langchain-ChatGLM/blob/dc0cdfba9065c49099508616b0ed177cb4c54062/chains/local_doc_qa.py#L89-L96)
   * [ ] Try other prompt (Chat friendly)
 * Replace OpenAI API with open source alternatives
   * [ ] Embedding
@@ -37,6 +40,7 @@ Apply LLM and ANN (Embedding Recall) to chat with document or do summarization.
 
 ## Resources
 
+* [Document QA | 🦜️🔗 Langchain](https://python.langchain.com/docs/modules/chains/additional/question_answering)
 * Tutorial
   * [LangChain101: Question A 300 Page Book (w/ OpenAI + Pinecone) - YouTube](https://www.youtube.com/watch?v=h0DHDp1FbmQ)
     * [langchain-tutorials/Ask A Book Questions.ipynb at main · gkamradt/langchain-tutorials · GitHub](https://github.com/gkamradt/langchain-tutorials/blob/main/data_generation/Ask%20A%20Book%20Questions.ipynb)
@@ -87,6 +91,14 @@ Apply LLM and ANN (Embedding Recall) to chat with document or do summarization.
   * [python - How to state in requirements.txt a direct github source - Stack Overflow](https://stackoverflow.com/questions/16584552/how-to-state-in-requirements-txt-a-direct-github-source)
 
 ## Trouble Shooting
+
+### Install titoken
+
+ERROR: Could not find a version that satisfies the requirement tiktoken (from versions: none)
+ERROR: No matching distribution found for tiktoken
+
+- [No matching distribution found for tiktoken · Issue #346 · GaiZhenbiao/ChuanhuChatGPT](https://github.com/GaiZhenbiao/ChuanhuChatGPT/issues/346)
+- [problem solve after upgrade python3.7 to 3.8](https://github.com/acheong08/ChatGPT/issues/573#issuecomment-1419511208)
 
 ### Install annoy
 
@@ -158,3 +170,15 @@ Try to install:
 wand.exceptions.DelegateError: FailedToExecuteCommand `"gswin64c.exe" -q -dQUIET -dSAFER -dBATCH -dNOPAUSE -dNOPROMPT -dMaxBitmap=500000000 -dAlignToPixels=0 -dGridFitTT=2 "-sDEVICE=pngalpha" -dTextAlphaBits=4 -dGraphicsAlphaBits=4 "-r150x150" -dPrinted=false -dFirstPage=1 -dLastPage=1 "-sOutputFile=C:/Users/david/AppData/Local/Temp/magick-zVgYM_snJYZPInoMrczafnS4JiAElv8t%d" "-fC:/Users/david/AppData/Local/Temp/magick-oCsZGHiEz2SbEDvyqNyZKMmsVkGS58Jd" "-fC:/Users/david/AppData/Local/Temp/magick-p0vM2uWevQNLAPkZhFJM4JWfyqROX5Jh"' (The system cannot find the file specified.
 ) @ error/delegate.c/ExternalDelegateCommand/517
 ```
+
+### Create virtual environment
+
+```sh
+conda create -n venv python=3.8
+```
+
+- [How to create a virtual Python shell using Python tools - ActiveState](https://www.activestate.com/resources/quick-reads/virtual-python-shell/)
+- [venv — Creation of virtual environments — Python 3.11.4 documentation](https://docs.python.org/3/library/venv.html)
+- [how to create a venv with a different python version - Stack Overflow](https://stackoverflow.com/questions/70422866/how-to-create-a-venv-with-a-different-python-version)
+- [How to install 'pyenv' Python version manager on Ubuntu 20.04](https://brain2life.hashnode.dev/how-to-install-pyenv-python-version-manager-on-ubuntu-2004)
+- [如何在ubuntu中安裝pyenv並使用多種版本的python？. 為什麼需要多種版本的python? | by Jeffrey | Medium](https://medium.com/@b10932006/%E5%A6%82%E4%BD%95%E5%9C%A8ubuntu%E4%B8%AD%E5%AE%89%E8%A3%9Dpyenv%E4%B8%A6%E4%BD%BF%E7%94%A8%E5%A4%9A%E7%A8%AE%E7%89%88%E6%9C%AC%E7%9A%84python-6626c1fbc76e)

@@ -2,6 +2,7 @@ from typing import List
 from langchain.llms import OpenAI
 from langchain.chains.question_answering import load_qa_chain
 from langchain.schema import Document
+from langchain.prompts import PromptTemplate
 import tiktoken
 import os
 from dotenv import load_dotenv
@@ -10,17 +11,34 @@ from vector_store import AnnRecall
 load_dotenv('../.env')
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
-
 class LLMChain:
-    def __init__(self, doc_embedding_path: str, ann_output_path: str, engine: str = 'OpenAI', temperature: int = 0, debug: bool = False) -> None:
+    def __init__(self, doc_embedding_path: str, ann_output_path: str, engine: str = 'OpenAI',
+                 temperature: int = 0, use_chinese_prompt: bool = True, debug: bool = False) -> None:
         assert engine in ['OpenAI']
         self.engine = engine
 
         self.debug = debug
 
-        self.llm = OpenAI(temperature=0, openai_api_key=OPENAI_API_KEY)
-        # https://python.langchain.com/en/latest/modules/chains/index_examples/question_answering.html
-        self.chain = load_qa_chain(self.llm, chain_type='stuff')
+        self.llm = OpenAI(temperature=temperature, openai_api_key=OPENAI_API_KEY)
+        if use_chinese_prompt:
+            # https://python.langchain.com/docs/modules/chains/additional/question_answering#the-stuff-chain
+            prompt_template = """基于以下已知信息，简洁和专业的来回答用户的问题。
+            如果无法从中得到答案，请说 "根据已知信息无法回答该问题" 或 "没有提供足够的相关信息"，不允许在答案中添加编造成分，答案请使用中文。
+            
+            已知内容:
+            {context}
+            
+            问题:
+            {question}"""
+
+            prompt = PromptTemplate(
+                template=prompt_template,
+                input_variables=["context", "question"]
+            )
+            self.chain = load_qa_chain(self.llm, chain_type='stuff', prompt=prompt)
+        else:
+            # https://python.langchain.com/en/latest/modules/chains/index_examples/question_answering.html
+            self.chain = load_qa_chain(self.llm, chain_type='stuff')
         self.ann_recall = AnnRecall()
         self.ann_recall.load_index(doc_embedding_path, ann_output_path)
 
@@ -75,7 +93,10 @@ if __name__ == '__main__':
     embed_path = DocumentEncoder._get_default_output_file_path(file_path)
     ann_path = ANNIndexBuilder._get_default_output_file_path(embed_path)
 
-    llm = LLMChain(embed_path, ann_path, debug=True)
+    # llm = LLMChain(embed_path, ann_path, use_chinese_prompt=False, debug=True)
     # print(llm.qa_chain('华为净利率成长多少?'))  # I don't know
     # print(llm.qa_chain('2021年华为毛利率是多少?'))  # I don't know (this is weird, the document with the answer should be recalled)
-    print(llm.qa_chain('请给出本研报的总结'))  # 麒麟信安携手华为欧拉共筑国产操作系统新生态 (not good)
+    # print(llm.qa_chain('请给出本研报的总结'))  # 麒麟信安携手华为欧拉共筑国产操作系统新生态 (not good)
+    llm = LLMChain(embed_path, ann_path, use_chinese_prompt=True, debug=True)
+    # print(llm.qa_chain('华为净利率成长多少?'))  # 根据已知信息无法回答该问题。
+    print(llm.qa_chain('拓维信息的营收在2018年与2021年的差距是多少？'))  # 根据已知信息无法回答该问题。
